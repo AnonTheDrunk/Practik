@@ -68,14 +68,14 @@ def div(a,b):
 def output():
     value = input_field.get()
     all_num = value.split(' ')
-    for i in range(1, len(all_num)-1, 2):
+    for i in range(1, len(all_num)):
         if all_num[i] == '*':
             a = int(all_num[i-1])
             b = int(all_num[i+1])
             all_num[i+1] = mult(a, b)
             print(mult(a,b))
-            del all_num[i-1]
-            del all_num[i]
+            #del all_num[i-1]
+            #del all_num[i]
 
         elif all_num[i] == '/':
             a = int(all_num[i-1])
@@ -83,8 +83,7 @@ def output():
             all_num[i+1] = div(a,b)
             del all_num[i-1]
             del all_num[i]
-        else:
-            pass
+
     for i in range(1, len(all_num) - 1, 2):
 
         if all_num[i] == '+':
@@ -101,7 +100,7 @@ def output():
             del all_num[i]
         else:
             #pass
-            print(all_num[0])
+            print(all_num)
         #print(all_num[i])
 
 
