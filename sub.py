@@ -63,8 +63,11 @@ def div(a,b):
         x = 0
         compilator(x)
 
-def compilator(x):
-    answer+=int(x)
+def compilator(self,x):
+
+    self.z = 0
+    self.z += x
+    return self.z
 
 
 def output():
@@ -98,6 +101,8 @@ def output():
 root = Tk()
 root.title("Калькулятор")
 root.geometry("600x400")
+
+
 
 frame1 = Frame(root)
 frame2 = Frame(root)
@@ -161,7 +166,8 @@ def press_equal():
     '''value = input_field.get()
     print(value.split(' ')[1])'''
 
-    print(output())
+    output()
+    print(compilator())
 
 def press_del():
     input_field.delete(0, END)
