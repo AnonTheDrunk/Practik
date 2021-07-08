@@ -62,42 +62,46 @@ def div(a,b):
     except ZeroDivisionError:
         return 0
 
-def compilator(self,x):
 
-    self.z = 0
-    self.z += x
-    return self.z
 
 
 def output():
     value = input_field.get()
     all_num = value.split(' ')
-
     for i in range(1, len(all_num)-1, 2):
-        q = 0
-
         if all_num[i] == '*':
             a = int(all_num[i-1])
             b = int(all_num[i+1])
             all_num[i+1] = mult(a, b)
+            print(mult(a,b))
             del all_num[i-1]
+            del all_num[i]
+
         elif all_num[i] == '/':
+            a = int(all_num[i-1])
+            b = int(all_num[i+1])
+            all_num[i+1] = div(a,b)
+            del all_num[i-1]
+            del all_num[i]
+        else:
+            pass
+    for i in range(1, len(all_num) - 1, 2):
+
+        if all_num[i] == '+':
             a = int(all_num[i - 1])
             b = int(all_num[i + 1])
-            all_num[i+1] = div(a, b)
+            all_num[i + 1] = plus(a, b)
             del all_num[i - 1]
+            del all_num[i]
+        elif all_num[i] == '-':
+            a = int(all_num[i - 1])
+            b = int(all_num[i + 1])
+            all_num[i + 1] = minus(a, b)
+            del all_num[i - 1]
+            del all_num[i]
         else:
-            if all_num[i] == '+':
-                a = int(all_num[i - 1])
-                b = int(all_num[i + 1])
-                all_num[i + 1] = plus(a, b)
-                del all_num[i - 1]
-            elif all_num[i] == '-':
-                a = int(all_num[i - 1])
-                b = int(all_num[i + 1])
-                all_num[i + 1] = minus(a, b)
-                del all_num[i - 1]
-
+            #pass
+            print(all_num[0])
         #print(all_num[i])
 
 
@@ -173,7 +177,6 @@ def press_equal():
     print(value.split(' ')[1])'''
 
     output()
-    print(compilator())
 
 def press_del():
     input_field.delete(0, END)
