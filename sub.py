@@ -44,24 +44,23 @@ def calc(aa):
 
 
 def plus(a,b):
-    x = a + b
-    compilator(x)
+    return a + b
+
 
 def minus(a,b):
-    x = a - b
-    compilator(x)
+    return a - b
+
 
 def mult(a,b):
-    x = a * b
-    compilator(x)
+    return a * b
+
 
 def div(a,b):
     try:
-        x = a / b
-        compilator(x)
+        return a / b
+
     except ZeroDivisionError:
-        x = 0
-        compilator(x)
+        return 0
 
 def compilator(self,x):
 
@@ -75,22 +74,29 @@ def output():
     all_num = value.split(' ')
 
     for i in range(1, len(all_num)-1, 2):
-        if all_num[i] == '+':
+        q = 0
+
+        if all_num[i] == '*':
             a = int(all_num[i-1])
             b = int(all_num[i+1])
-            plus(a,b)
-        elif all_num[i] == '-':
-            a = int(all_num[i - 1])
-            b = int(all_num[i + 1])
-            minus(a, b)
-        elif all_num[i] == '*':
-            a = int(all_num[i - 1])
-            b = int(all_num[i + 1])
-            mult(a, b)
+            all_num[i+1] = mult(a, b)
+            del all_num[i-1]
         elif all_num[i] == '/':
             a = int(all_num[i - 1])
             b = int(all_num[i + 1])
-            div(a, b)
+            all_num[i+1] = div(a, b)
+            del all_num[i - 1]
+        else:
+            if all_num[i] == '+':
+                a = int(all_num[i - 1])
+                b = int(all_num[i + 1])
+                all_num[i + 1] = plus(a, b)
+                del all_num[i - 1]
+            elif all_num[i] == '-':
+                a = int(all_num[i - 1])
+                b = int(all_num[i + 1])
+                all_num[i + 1] = minus(a, b)
+                del all_num[i - 1]
 
         #print(all_num[i])
 
