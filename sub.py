@@ -68,21 +68,30 @@ def div(a,b):
 def output():
     value = input_field.get()
     all_num = value.split(' ')
-    for i in range(1, len(all_num)):
+    x = []
+    x.extend(all_num)
+    #i = 0
+    for i in range(1, len(all_num)-2, 2):
+    #while i!=len(all_num):
+        #i= i+2
         if all_num[i] == '*':
             a = int(all_num[i-1])
             b = int(all_num[i+1])
-            all_num[i+1] = mult(a, b)
-            print(mult(a,b))
-            #del all_num[i-1]
-            #del all_num[i]
+            #x.append(mult(a,b))
+            #x.append(all_num[i+2])
+            x[i+1] = mult(a, b)
+            x.pop(i)
+            x.pop(i-1)
+
+            print(x)
+            #print(all_num)
 
         elif all_num[i] == '/':
             a = int(all_num[i-1])
             b = int(all_num[i+1])
             all_num[i+1] = div(a,b)
-            del all_num[i-1]
-            del all_num[i]
+            #del all_num[i-1]
+            #del all_num[i]
 
     for i in range(1, len(all_num) - 1, 2):
 
@@ -90,17 +99,18 @@ def output():
             a = int(all_num[i - 1])
             b = int(all_num[i + 1])
             all_num[i + 1] = plus(a, b)
-            del all_num[i - 1]
-            del all_num[i]
+            #del all_num[i - 1]
+            #del all_num[i]
         elif all_num[i] == '-':
             a = int(all_num[i - 1])
             b = int(all_num[i + 1])
             all_num[i + 1] = minus(a, b)
-            del all_num[i - 1]
-            del all_num[i]
-        else:
+            #del all_num[i - 1]
+            #del all_num[i]
+
             #pass
-            print(all_num)
+    #print(x)
+    #print(all_num)
         #print(all_num[i])
 
 
