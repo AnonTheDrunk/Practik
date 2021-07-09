@@ -1,46 +1,6 @@
 from tkinter import *
 
-def MA(a,b,x):
-    if x == '+':
-        plus(a,b)
-    elif x == '-':
-        minus(a,b)
-    elif x == '*':
-        mult(a,b)
-    elif x == '/':
-        try:
-            div(a,b)
-        except ZeroDivisionError:
-            return 0
 
-
-def comp(q,w,x):
-    pass
-
-
-def inputs(a):
-
-    if a == '+' or a == '-' or a == '*' or a == '/':
-        x = a
-
-    else:
-        aa = ''
-        aa += str(a)
-        calc(aa)
-
-def calc(aa):
-    q = 0
-    w = 0
-    z = 0
-    if z == 0:
-        q = int(aa)
-        z+=1
-    else:
-        w = int(aa)
-        z+=1
-
-    if z == 2:
-        pass
 
 
 def plus(a,b):
@@ -99,26 +59,29 @@ def output():
             #del all_num[i-1]
             #del all_num[i]
 
-    '''for i in range(16):
-        if x[i] == ' ':
-            x.remove(' ')'''
+    for i in range(len(all_num) - 1):
+
+        x.remove(' ')
+
+
 
     for i in range(1, len(all_num) - 1, 2):
 
         if all_num[i] == '+':
-            a = int(all_num[i - 1])
-            b = int(all_num[i + 1])
-            all_num[i + 1] = plus(a, b)
-            #del all_num[i - 1]
-            #del all_num[i]
+            a = int(x[i - 1])
+            b = int(x[i + 1])
+            x[i + 1] = plus(a, b)
+            x[i] = ' '
+            x[i - 1] = ' '
         elif all_num[i] == '-':
-            a = int(all_num[i - 1])
-            b = int(all_num[i + 1])
-            all_num[i + 1] = minus(a, b)
-            #del all_num[i - 1]
-            #del all_num[i]
+            a = int(x[i - 1])
+            b = int(x[i + 1])
+            x[i + 1] = minus(a, b)
+            x[i] = ' '
+            x[i - 1] = ' '
 
-            #pass
+
+
     print(x)
     #print(all_num)
         #print(all_num[i])
