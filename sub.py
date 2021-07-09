@@ -28,10 +28,13 @@ def div(a, b):
 def output():
     value = input_field.get()
     all_num = value.split(' ')
+    length_all_num = len(all_num)
     x = []
+    y = {}
+    z = []
     x.extend(all_num)
     #i = 0
-    for i in range(1, len(all_num)-1, 2):
+    for i in range(1, length_all_num-1, 2):
     #while i!=len(all_num):
         #i= i+2
         if all_num[i] == '*':
@@ -45,44 +48,55 @@ def output():
             #x.pop(i)
             #x.pop(i-1)
 
-            print(x)
+
             #print(all_num)
 
         elif all_num[i] == '/':
             a = int(x[i-1])
             b = int(x[i+1])
-            #all_num[i+1] = div(a,b)
+
             x[i + 1] = div(a, b)
             x[i] = ' '
             x[i - 1] = ' '
-            print(x)
-            #del all_num[i-1]
-            #del all_num[i]
-
-    for i in range(len(all_num) - 1):
-
-        x.remove(' ')
-
-
-
-    for i in range(1, len(all_num) - 1, 2):
-
-        if all_num[i] == '+':
-            a = int(x[i - 1])
-            b = int(x[i + 1])
-            x[i + 1] = plus(a, b)
-            x[i] = ' '
-            x[i - 1] = ' '
-        elif all_num[i] == '-':
-            a = int(x[i - 1])
-            b = int(x[i + 1])
-            x[i + 1] = minus(a, b)
-            x[i] = ' '
-            x[i - 1] = ' '
-
-
 
     print(x)
+    y = set(x)
+    for i in range(length_all_num):
+
+        y.discard(' ')
+
+    y = list(y)
+    y.sort(key=x.index)
+    x.clear()
+    z = list(y)
+    print(z)
+    #y.extend(x)
+
+    for i in range(1, len(y) - 1, 2):
+
+        if y[i] == '+':
+            a = int(z[i - 1])
+            b = int(z[i + 1])
+            z[i + 1] = plus(a, b)
+            z[i] = ' '
+            z[i - 1] = ' '
+        elif y[i] == '-':
+            a = int(z[i - 1])
+            b = int(z[i + 1])
+            z[i + 1] = minus(a, b)
+            z[i] = ' '
+            z[i - 1] = ' '
+
+    y = set(z)
+    for i in range(len(y)):
+        y.discard(' ')
+
+    y = list(y)
+    y.sort(key=z.index)
+    z.clear()
+    z = y
+
+    print(z)
     #print(all_num)
         #print(all_num[i])
 
