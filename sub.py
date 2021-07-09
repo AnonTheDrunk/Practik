@@ -55,7 +55,7 @@ def mult(a,b):
     return a * b
 
 
-def div(a,b):
+def div(a, b):
     try:
         return a / b
 
@@ -71,27 +71,37 @@ def output():
     x = []
     x.extend(all_num)
     #i = 0
-    for i in range(1, len(all_num)-2, 2):
+    for i in range(1, len(all_num)-1, 2):
     #while i!=len(all_num):
         #i= i+2
         if all_num[i] == '*':
-            a = int(all_num[i-1])
-            b = int(all_num[i+1])
+            a = int(x[i-1])
+            b = int(x[i+1])
             #x.append(mult(a,b))
             #x.append(all_num[i+2])
             x[i+1] = mult(a, b)
-            x.pop(i)
-            x.pop(i-1)
+            x[i]=' '
+            x[i-1]=' '
+            #x.pop(i)
+            #x.pop(i-1)
 
             print(x)
             #print(all_num)
 
         elif all_num[i] == '/':
-            a = int(all_num[i-1])
-            b = int(all_num[i+1])
-            all_num[i+1] = div(a,b)
+            a = int(x[i-1])
+            b = int(x[i+1])
+            #all_num[i+1] = div(a,b)
+            x[i + 1] = div(a, b)
+            x[i] = ' '
+            x[i - 1] = ' '
+            print(x)
             #del all_num[i-1]
             #del all_num[i]
+
+    '''for i in range(16):
+        if x[i] == ' ':
+            x.remove(' ')'''
 
     for i in range(1, len(all_num) - 1, 2):
 
@@ -109,7 +119,7 @@ def output():
             #del all_num[i]
 
             #pass
-    #print(x)
+    print(x)
     #print(all_num)
         #print(all_num[i])
 
