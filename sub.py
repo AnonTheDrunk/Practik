@@ -30,59 +30,53 @@ def output():
     all_num = value.split(' ')
     length_all_num = len(all_num)
     x = []
-    y = {}
+    y = []
     z = []
     x.extend(all_num)
     #i = 0
     for i in range(1, length_all_num-1, 2):
-    #while i!=len(all_num):
-        #i= i+2
         if all_num[i] == '*':
-            a = int(x[i-1])
-            b = int(x[i+1])
-            #x.append(mult(a,b))
-            #x.append(all_num[i+2])
+            a = float(x[i-1])
+            b = float(x[i+1])
+
             x[i+1] = mult(a, b)
             x[i]=' '
             x[i-1]=' '
-            #x.pop(i)
-            #x.pop(i-1)
 
-
-            #print(all_num)
 
         elif all_num[i] == '/':
-            a = int(x[i-1])
-            b = int(x[i+1])
+            a = float(x[i-1])
+            b = float(x[i+1])
 
             x[i + 1] = div(a, b)
             x[i] = ' '
             x[i - 1] = ' '
 
     print(x)
-    y = set(x)
+
+
+
     for i in range(length_all_num):
+        if x[i] != ' ':
+            y.append(x[i])
 
-        y.discard(' ')
 
-    y = list(y)
-    y.sort(key=x.index)
-    x.clear()
-    z = list(y)
+
+    z.extend(y)
     print(z)
-    #y.extend(x)
+
 
     for i in range(1, len(y) - 1, 2):
 
         if y[i] == '+':
-            a = int(z[i - 1])
-            b = int(z[i + 1])
+            a = float(z[i - 1])
+            b = float(z[i + 1])
             z[i + 1] = plus(a, b)
             z[i] = ' '
             z[i - 1] = ' '
         elif y[i] == '-':
-            a = int(z[i - 1])
-            b = int(z[i + 1])
+            a = float(z[i - 1])
+            b = float(z[i + 1])
             z[i + 1] = minus(a, b)
             z[i] = ' '
             z[i - 1] = ' '
@@ -94,11 +88,13 @@ def output():
     y = list(y)
     y.sort(key=z.index)
     z.clear()
-    z = y
+    if y[0].is_integer():
+        z = int(y[0])
+    else:
+        z = y[0]
 
     print(z)
-    #print(all_num)
-        #print(all_num[i])
+
 
 
 
@@ -169,8 +165,6 @@ def press_multiply():
     insert_into_input(" * ")
 
 def press_equal():
-    '''value = input_field.get()
-    print(value.split(' ')[1])'''
 
     output()
 
@@ -193,17 +187,6 @@ btnMult = Button(frame2, text="*", width=10, height=6, command=press_multiply)#,
 btnDiv = Button(frame2, text="/", width=10, height=6, command=press_div)#, command=inputs('/'))
 btnE = Button(frame1, text="=", width=10, height=6, command=press_equal)#, command=)
 btn_del = Button(frame1, text="C", width=10, height=6, command=press_del)
-
-'''btn1.pack(side="center")
-btn2.pack(side="center")
-btn3.pack(side="center")
-btn4.pack(side="center")
-btn5.pack(side="center")
-btn6.pack(side="center")
-btn7.pack(side="center")
-btn8.pack(side="center")
-btn9.pack(side="center")'''
-
 
 
 frame1.pack(side=LEFT, fill="x")
