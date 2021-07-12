@@ -18,31 +18,22 @@ def div(a, b):
         return 0
 
 
-#def mult_div():
-
-
-
-def output(value):
-    all_num = value.split(' ')
+def mult_div(all_num):
     x = []
-    y = []
-    z = []
     x.extend(all_num)
+    y = []
 
     for i in range(1, len(all_num) - 1, 2):
         if all_num[i] == '*':
             a = float(x[i - 1])
             b = float(x[i + 1])
-
             x[i + 1] = mult(a, b)
             x[i] = ' '
             x[i - 1] = ' '
 
-
         elif all_num[i] == '/':
             a = float(x[i - 1])
             b = float(x[i + 1])
-
             x[i + 1] = div(a, b)
             x[i] = ' '
             x[i - 1] = ' '
@@ -51,7 +42,15 @@ def output(value):
         if x[i] != ' ':
             y.append(x[i])
 
-    z.extend(y)
+    x.clear()
+    return y
+
+
+def plus_minus(zz):
+    z = []
+    z.extend(zz)
+    y = []
+    y.extend(z)
 
     for i in range(1, len(y) - 1, 2):
 
@@ -73,12 +72,19 @@ def output(value):
     for i in range(len(z)):
         if z[i] != ' ':
             y.append(z[i])
-
     z.clear()
+    return y[0]
 
-    if y[0].is_integer():
-        z = int(y[0])
+
+def output(value):
+    all_num = value.split(' ')
+    zz = []
+    zz.extend(mult_div(all_num))
+
+    if plus_minus(zz).is_integer():
+        z = int(plus_minus(zz))
     else:
-        z = y[0]
+        z = plus_minus(zz)
 
+    zz.clear()
     return z
