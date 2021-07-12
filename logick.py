@@ -18,6 +18,39 @@ def div(a, b):
         return 0
 
 
+def check_double(value):
+    check_num = value.split(' ')
+    all_num = []
+    all_num2 = []
+    for i in range(len(check_num) - 1):
+        if check_num[i] != check_num[i+1]:
+            all_num.append(check_num[i])
+            #print(len(check_num)-2)
+            if i == len(check_num)-2:
+                all_num.append(check_num[i+1])
+
+    all_num.append(check_num[len(check_num)-2])
+    print(all_num)
+    all_num2.append(all_num[0])
+    for i in range(1,len(all_num) - 1):
+
+        if all_num[i] == '.':
+            if all_num[i + 1] != '*' or all_num[i + 1] != '/' or all_num[i + 1] != '+' or all_num[i + 1] != '-':
+
+                if all_num[i - 1] == '*' or all_num[i - 1] == '/' or all_num[i - 1] == '+' or all_num[i - 1] == '-':
+                    all_num2.append(0.)
+            else:
+                all_num2.append(all_num[i-1]+all_num[i]+all_num[i]+1)
+        elif all_num[i] == '0.':
+            if all_num[i + 1] != '*' or all_num[i + 1] != '/' or all_num[i + 1] != '+' or all_num[i + 1] != '-':
+                all_num2.append(str(all_num[i])+all_num[i+1])
+        else:
+            all_num2.append(all_num[i])
+
+    print(all_num2)
+    return all_num2
+
+
 def mult_div(all_num):
     x = []
     x.extend(all_num)
@@ -73,11 +106,13 @@ def plus_minus(zz):
         if z[i] != ' ':
             y.append(z[i])
     z.clear()
-    return y[0]
+    #print(y)
+    y = y[0]
+    return y
 
 
 def output(value):
-    all_num = value.split(' ')
+    all_num = check_double(value)
     zz = []
     zz.extend(mult_div(all_num))
 
