@@ -27,6 +27,14 @@ class Interface:
         self.input_field.insert(0, value)
         self.input_field.configure(state='disabled')
 
+    def check_double_input(self):
+        list_of_value = self.input_field.get().split(' ')
+        return list_of_value[-1] == '' or list_of_value[-1] == '.'
+
+    def check_double_points(self):
+        value = self.input_field.get().split(' ')[-1]
+        return '.' in value and value != ''
+
     def press1(self):
         self.insert_into_input('1')
 
@@ -58,16 +66,20 @@ class Interface:
         self.insert_into_input('0')
 
     def press_plus(self):
-        self.insert_into_input(" + ")
+        if not self.check_double_input():
+            self.insert_into_input(" + ")
 
     def press_minus(self):
-        self.insert_into_input(" - ")
+        if not self.check_double_input():
+            self.insert_into_input(" - ")
 
     def press_div(self):
-        self.insert_into_input(" / ")
+        if not self.check_double_input():
+            self.insert_into_input(" / ")
 
     def press_multiply(self):
-        self.insert_into_input(" * ")
+        if not self.check_double_input():
+            self.insert_into_input(" * ")
 
     def press_equal(self):
         self.answer_output(output(self.input_field.get()))
@@ -76,6 +88,10 @@ class Interface:
         self.input_field.configure(state='normal')
         self.input_field.delete(0, END)
         self.input_field.configure(state='disabled')
+
+    def press_dot(self):
+        if not self.check_double_points():
+            self.insert_into_input('.')
 
     def buttons(self):
         btn1 = Button(self.frame1, text="1", width=10, height=6, command=self.press1)
@@ -92,9 +108,9 @@ class Interface:
         btnM = Button(self.frame2, text="-", width=10, height=6, command=self.press_minus)
         btnMult = Button(self.frame2, text="*", width=10, height=6, command=self.press_multiply)
         btnDiv = Button(self.frame2, text="/", width=10, height=6, command=self.press_div)
-        btnE = Button(self.frame1, text="=", width=10, height=6, command=self.press_equal)
+        btnE = Button(self.frame2, text="=", width=10, height=6, command=self.press_equal)
         btn_del = Button(self.frame1, text="C", width=10, height=6, command=self.press_del)
-        # btn_
+        btn_dot = Button(self.frame1, text=".", width=10, height=6, command=self.press_dot)
 
         self.frame1.pack(side=LEFT, fill="x")
         self.frame2.pack(side=LEFT, fill="x")
@@ -103,6 +119,7 @@ class Interface:
         btnM.grid(row=0, column=1)
         btnMult.grid(row=1, column=0)
         btnDiv.grid(row=1, column=1)
+        btnE.grid(row=2, column=0, columnspan=2)
 
         self.input_field.grid(row=0, column=0, columnspan=2)
         btn1.grid(row=1, column=0)
@@ -115,5 +132,5 @@ class Interface:
         btn8.grid(row=3, column=1)
         btn9.grid(row=3, column=2)
         btn0.grid(row=4, column=1)
-        btnE.grid(row=4, column=2)
+        btn_dot.grid(row=4, column=2)
         btn_del.grid(row=4, column=0)

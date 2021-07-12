@@ -18,20 +18,11 @@ def div(a, b):
         return 0
 
 
-def check_double(value):
-    check_num = value.split(' ')
-    all_num = []
-    all_num2 = []
-    for i in range(len(check_num) - 1):
-        if check_num[i] != check_num[i+1]:
-            all_num.append(check_num[i])
-            #print(len(check_num)-2)
-            if i == len(check_num)-2:
-                all_num.append(check_num[i+1])
+'''def check_double(value):
+    all_num = value.split(' ')
 
-    all_num.append(check_num[len(check_num)-2])
-    print(all_num)
-    all_num2.append(all_num[0])
+    all_num2 = []
+
     for i in range(1,len(all_num) - 1):
 
         if all_num[i] == '.':
@@ -48,78 +39,78 @@ def check_double(value):
             all_num2.append(all_num[i])
 
     print(all_num2)
-    return all_num2
+    return all_num2'''
 
 
 def mult_div(all_num):
     x = []
-    x.extend(all_num)
-    y = []
 
     for i in range(1, len(all_num) - 1, 2):
         if all_num[i] == '*':
-            a = float(x[i - 1])
-            b = float(x[i + 1])
-            x[i + 1] = mult(a, b)
+            a = float(all_num[i - 1])
+            b = float(all_num[i + 1])
+            x.append(mult(a, b))
+            '''x[i + 1] = mult(a, b)
             x[i] = ' '
-            x[i - 1] = ' '
+            x[i - 1] = ' '''
 
         elif all_num[i] == '/':
-            a = float(x[i - 1])
-            b = float(x[i + 1])
-            x[i + 1] = div(a, b)
+            a = float(all_num[i - 1])
+            b = float(all_num[i + 1])
+            x.append(div(a, b))
+            ''''x[i + 1] = div(a, b)
             x[i] = ' '
-            x[i - 1] = ' '
+            x[i - 1] = ' '''''
 
-    for i in range(len(all_num)):
-        if x[i] != ' ':
-            y.append(x[i])
-
-    x.clear()
-    return y
+        else:
+            x.append(all_num[i])
+    print('x: ', x)
+    return x
 
 
 def plus_minus(zz):
+    print(zz)
     z = []
-    z.extend(zz)
     y = []
-    y.extend(z)
+    y.extend(zz)
 
     for i in range(1, len(y) - 1, 2):
 
         if y[i] == '+':
-            a = float(z[i - 1])
-            b = float(z[i + 1])
-            z[i + 1] = plus(a, b)
+            a = float(y[i - 1])
+            b = float(y[i + 1])
+            z.append(plus(a, b))
+            '''z[i + 1] = plus(a, b)
             z[i] = ' '
-            z[i - 1] = ' '
+            z[i - 1] = ' '''
         elif y[i] == '-':
-            a = float(z[i - 1])
-            b = float(z[i + 1])
-            z[i + 1] = minus(a, b)
+            a = float(y[i - 1])
+            b = float(y[i + 1])
+            z.append(minus(a, b))
+            '''z[i + 1] = minus(a, b)
             z[i] = ' '
-            z[i - 1] = ' '
+            z[i - 1] = ' '''
 
-    y.clear()
+        else:
+            z.append(y[i])
+
+    '''y.clear()
 
     for i in range(len(z)):
         if z[i] != ' ':
             y.append(z[i])
-    z.clear()
+    z.clear()'''
     #print(y)
-    y = y[0]
-    return y
+    #y = y[0]
+    print(z)
+    return z
 
 
 def output(value):
-    all_num = check_double(value)
-    zz = []
-    zz.extend(mult_div(all_num))
-
-    if plus_minus(zz).is_integer():
-        z = int(plus_minus(zz))
-    else:
-        z = plus_minus(zz)
+    all_num = value.split(' ')
+    zz = mult_div(all_num)
+    z = plus_minus(zz)
 
     zz.clear()
-    return z
+    print(z)
+    return z or zz
