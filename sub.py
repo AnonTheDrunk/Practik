@@ -95,6 +95,8 @@ def output():
 
     print(z)
 
+    answer_output(z)
+
 
 
 
@@ -109,13 +111,21 @@ root.geometry("600x400")
 frame1 = Frame(root)
 frame2 = Frame(root)
 
-input_field = Entry(frame1)
+input_field = Entry(frame1, state='disabled')
+
+def answer_output(new_char):
+    input_field.configure(state='normal')
+    input_field.delete(0, END)
+    input_field.insert(0, new_char)
+    input_field.configure(state='disabled')
 
 def insert_into_input(new_char):
+    input_field.configure(state='normal')
     value = input_field.get()
     value += new_char
     input_field.delete(0, END)
     input_field.insert(0, value)
+    input_field.configure(state='disabled')
 
 def press1():
     insert_into_input('1')
@@ -187,6 +197,7 @@ btnMult = Button(frame2, text="*", width=10, height=6, command=press_multiply)#,
 btnDiv = Button(frame2, text="/", width=10, height=6, command=press_div)#, command=inputs('/'))
 btnE = Button(frame1, text="=", width=10, height=6, command=press_equal)#, command=)
 btn_del = Button(frame1, text="C", width=10, height=6, command=press_del)
+#btn_
 
 
 frame1.pack(side=LEFT, fill="x")
